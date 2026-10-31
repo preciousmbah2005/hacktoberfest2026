@@ -1,25 +1,27 @@
-export interface OrientationQuestionnaireAnswers {
-	interests: string[];
-	favoriteSubjects: string[];
-	skills: string[];
-	careerGoals: string;
-}
-
-export interface CareerPathway {
+export interface Course {
 	id: string;
-	name: string;
+	title: string;
 	description: string;
-	skills: string[];
-	courses: string[];
+	pathway: string;
+	level: 'Beginner' | 'Intermediate' | 'Advanced';
+	duration: string;
+	enrolled: boolean;
+	progress?: number;
 }
 
-export interface CareerRecommendation {
-	pathway: CareerPathway;
-	reason: string;
+export interface Lesson {
+	id: string;
+	courseId: string;
+	title: string;
+	order: number;
+	completed: boolean;
+	pointsReward: number;
 }
 
-export interface AssessmentResult {
-	recommendations: CareerRecommendation[];
+export interface CourseProgress {
+	courseId: string;
+	modulesCompleted: number;
+	totalModules: number;
+	progressPercentage: number;
+	pointsEarned: number;
 }
-" filePath">
-/home/rebase04/Desktop/hacktoberfest2026/frontend/src/lib/components/orientation/types.ts
