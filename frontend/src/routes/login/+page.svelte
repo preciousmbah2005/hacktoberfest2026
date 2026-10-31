@@ -65,7 +65,7 @@
 			</div>
 
 			{#if errorMsg}
-				<div class="error-box">{errorMsg}</div>
+				<div class="error-box">⚠️ {errorMsg}</div>
 			{/if}
 
 			<button type="submit" class="btn btn-primary btn-lg w-full" disabled={loading}>
@@ -78,7 +78,7 @@
 		</div>
 
 		<button type="button" class="btn btn-outline w-full" onclick={handleDemoLogin}>
-			Instant Demo Login
+			⚡ Instant 1-Click Demo Login
 		</button>
 
 		<div class="auth-footer">

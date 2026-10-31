@@ -23,7 +23,7 @@
 			<span class="stat-unit">PTS</span>
 		</div>
 		<div class="stat-footer">
-			<span class="stat-hint">Earn more by finishing modules and quizzes</span>
+			<span class="stat-hint">⚡ Earn more by finishing modules & quizzes</span>
 		</div>
 	</div>
 
@@ -46,7 +46,7 @@
 	<div class="card stat-card">
 		<div class="stat-top">
 			<span class="stat-label">Learning Streak</span>
-			<span class="stat-badge streak-badge">Daily Goal</span>
+			<span class="stat-badge streak-badge">🔥 Daily Goal</span>
 		</div>
 		<div class="stat-main">
 			<span class="stat-val text-rose">{stats.streak_days}</span>

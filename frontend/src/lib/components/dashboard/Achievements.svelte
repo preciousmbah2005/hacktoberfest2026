@@ -4,6 +4,7 @@
 
 <div class="card achievements-card">
 	<div class="card-head">
+		<div class="icon-wrap">🏆</div>
 		<div>
 			<h3 class="card-title">Recent Milestones & Badges</h3>
 			<p class="card-subtitle">Your latest learning proofs and achievements</p>
@@ -13,6 +14,7 @@
 	<div class="achievements-list">
 		{#each achievements as achievement}
 			<div class="achievement-item">
+				<span class="badge-star">✨</span>
 				<span class="achievement-text">{achievement}</span>
 			</div>
 		{/each}

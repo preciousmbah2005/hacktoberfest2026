@@ -7,11 +7,9 @@
 	let user = $derived($authStore.user);
 
 	let showProfileMenu = $state(false);
-	let theme = $state<'light' | 'dark'>('light');
 
 	onMount(() => {
 		walletStore.load();
-		theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 	});
 
 	function toggleMenu() {
@@ -21,12 +19,6 @@
 	function handleSignOut() {
 		authStore.logout();
 		showProfileMenu = false;
-	}
-
-	function toggleTheme() {
-		theme = theme === 'light' ? 'dark' : 'light';
-		document.documentElement.dataset.theme = theme;
-		localStorage.setItem('l2e_theme', theme);
 	}
 </script>
 
@@ -49,31 +41,6 @@
 
 		<!-- Action bar & Status -->
 		<div class="topbar-actions">
-			<button
-				class="theme-toggle"
-				type="button"
-				onclick={toggleTheme}
-				aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-				title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-			>
-				{#if theme === 'light'}
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-					</svg>
-				{:else}
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<circle cx="12" cy="12" r="4"/>
-						<line x1="12" y1="2" x2="12" y2="4"/>
-						<line x1="12" y1="20" x2="12" y2="22"/>
-						<line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
-						<line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
-						<line x1="2" y1="12" x2="4" y2="12"/>
-						<line x1="20" y1="12" x2="22" y2="12"/>
-						<line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
-						<line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
-					</svg>
-				{/if}
-			</button>
 			<!-- Quick Wallet Pill -->
 			<a href="/rewards" class="points-pill" title="View Rewards Wallet & Redeem Mobile Data">
 				<div class="coin-icon">
@@ -89,7 +56,7 @@
 					<span class="points-val">{points.toLocaleString()}</span>
 					<span class="points-label">Pts</span>
 				</div>
-				<span class="pill-cta">Redeem Data</span>
+				<span class="pill-cta">Redeem Data ⚡</span>
 			</a>
 
 			<!-- User Menu -->
@@ -205,27 +172,6 @@
 		display: flex;
 		align-items: center;
 		gap: 16px;
-	}
-
-	.theme-toggle {
-		width: 38px;
-		height: 38px;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-		border-radius: 9999px;
-		border: 1px solid var(--border-subtle);
-		background: var(--bg-card);
-		color: var(--text-main);
-		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-
-	.theme-toggle:hover {
-		border-color: var(--border-highlight);
-		background: var(--bg-card-hover);
-		transform: translateY(-1px);
 	}
 
 	.points-pill {

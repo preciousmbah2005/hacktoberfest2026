@@ -25,6 +25,7 @@
 	
 	<div class="wallet-top">
 		<div class="brand-badge">
+			<span class="icon">⚡</span>
 			<span>Learn2Earn Verified Wallet</span>
 		</div>
 		<span class="status-live">Live Balance</span>
@@ -62,7 +63,7 @@
 
 	<div class="wallet-footer">
 		<div class="exchange-rate-pill">
-			<span>100 Points = 200MB Telecom Data</span>
+			<span>💡 100 Points ≈ 200MB Telecom Data</span>
 		</div>
 		<button 
 			class="btn btn-outline btn-sm"

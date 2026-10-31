@@ -34,9 +34,9 @@
 				<div class="tx-item">
 					<div class="tx-icon-wrap" class:earned={tx.type === 'earned'} class:redeemed={tx.type === 'redeemed'}>
 						{#if tx.type === 'earned'}
-							Earned
+							⚡
 						{:else}
-							Redeemed
+							📶
 						{/if}
 					</div>
 

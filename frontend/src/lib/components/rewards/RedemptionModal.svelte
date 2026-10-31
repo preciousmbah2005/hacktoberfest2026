@@ -42,6 +42,7 @@
 			{#if lastRedemption}
 				<!-- Success Screen -->
 				<div class="success-view">
+					<div class="success-icon">🎉</div>
 					<h3 class="success-title">Mobile Data Dispatched!</h3>
 					<p class="success-msg">{lastRedemption.message}</p>
 
@@ -120,7 +121,7 @@
 
 					{#if errorMsg}
 						<div class="error-banner">
-							{errorMsg}
+							⚠️ {errorMsg}
 						</div>
 					{/if}
 

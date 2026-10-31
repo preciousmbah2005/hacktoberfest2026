@@ -64,7 +64,7 @@
 						onclick={() => onSelectPackage(pkg)}
 					>
 						{#if canAfford}
-							Redeem Bundle
+							Redeem Bundle ⚡
 						{:else}
 							Need {pkg.points_cost - userPoints} more pts
 						{/if}
