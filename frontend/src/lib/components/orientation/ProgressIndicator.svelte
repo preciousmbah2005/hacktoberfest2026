@@ -1,41 +1,16 @@
 <script lang="ts">
-	import type { Lesson } from './types';
-	let { lessons, currentId = '', onNavigate = (_id: string) => {} } = $props<{ lessons: Lesson[]; currentId?: string; onNavigate?: (id: string) => void }>();
+	let { value = 0, max = 100, label = '' } = $props();
+	const pct = $derived(Math.min(100, Math.max(0, (value / max) * 100)));
 </script>
 
-<nav class="lesson-nav">
-	{#each lessons as lesson}
-		<button
-			class="lesson-item"
-			class:active={lesson.id === currentId}
-			class:completed={lesson.completed}
-			onclick={() => onNavigate(lesson.id)}
-			type="button"
-		>
-			<span class="lesson-order">{lesson.order}</span>
-			<span class="lesson-title">{lesson.title}</span>
-		</button>
-	{/each}
-</nav>
+<div class="progress-wrap">
+	{#if label}<span class="progress-label">{label}</span>{/if}
+	<div class="progress-container">
+		<div class="progress-bar" style="width: {pct}%"></div>
+	</div>
+</div>
 
 <style>
-	.lesson-nav { display: flex; flex-direction: column; gap: 6px; }
-	.lesson-item {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 10px 12px;
-		border-radius: var(--radius-sm);
-		border: 1px solid var(--border-subtle);
-		background: rgba(255,255,255,0.03);
-		cursor: pointer;
-		text-align: left;
-		color: var(--text-main);
-	}
-	.lesson-item.active { border-color: var(--accent-indigo); background: rgba(99,102,241,0.1); }
-	.lesson-item.completed .lesson-title { color: var(--text-dim); text-decoration: line-through; }
-	.lesson-order { font-weight: 700; color: var(--text-muted); min-width: 20px; }
-	.lesson-title { font-size: 0.9rem; }
+	.progress-wrap { display: flex; flex-direction: column; gap: 6px; }
+	.progress-label { font-size: 0.75rem; color: var(--text-muted); }
 </style>
-" filePath">
-/home/rebase04/Desktop/hacktoberfest2026/frontend/src/lib/components/courses/LessonNavigation.svelte
