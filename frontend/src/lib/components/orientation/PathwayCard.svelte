@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { CareerRecommendation } from './types';
-	let { recommendation } = $props<{ recommendation: CareerRecommendation }>();
+	let { recommendation }: { recommendation: CareerRecommendation } = $props();
 </script>
 
 <div class="card rec-card">

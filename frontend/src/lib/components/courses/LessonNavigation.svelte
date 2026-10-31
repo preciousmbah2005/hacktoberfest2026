@@ -1,36 +1,39 @@
 <script lang="ts">
-	import type { Course } from './types';
-	let { course, onEnroll = () => {} } = $props<{ course: Course; onEnroll?: () => void }>();
+	import type { Lesson } from './types';
+	let { lessons, currentId = '', onNavigate = (_id: string) => {} }: { lessons: Lesson[]; currentId?: string; onNavigate?: (id: string) => void } = $props();
 </script>
 
-<div class="card course-card">
-	<div class="card-head">
-		<span class="badge badge-ai">{course.category}</span>
-		<span class="level-pill">{course.level}</span>
-	</div>
-	<h3 class="course-name">{course.title}</h3>
-	<p class="course-desc">{course.description}</p>
-	<div class="course-stats">
-		<span class="stat-k">Modules:</span>
-		<span class="stat-v">{course.modules}</span>
-		<span class="stat-k">Reward:</span>
-		<span class="stat-v text-emerald">+{course.pointsReward} PTS</span>
-	</div>
-	<button class="btn btn-reward btn-sm" onclick={onEnroll} disabled={course.enrolled}>
-		{course.enrolled ? 'Enrolled' : 'Enroll'}
-	</button>
-</div>
+<nav class="lesson-nav">
+	{#each lessons as lesson}
+		<button
+			class="lesson-item"
+			class:active={lesson.id === currentId}
+			class:completed={lesson.completed}
+			onclick={() => onNavigate(lesson.id)}
+			type="button"
+		>
+			<span class="lesson-order">{lesson.order}</span>
+			<span class="lesson-title">{lesson.title}</span>
+		</button>
+	{/each}
+</nav>
 
 <style>
-	.course-card { display: flex; flex-direction: column; gap: 12px; }
-	.card-head { display: flex; justify-content: space-between; align-items: center; }
-	.level-pill { font-size: 0.75rem; color: var(--text-dim); }
-	.course-name { font-size: 1.15rem; }
-	.course-desc { font-size: 0.88rem; color: var(--text-muted); }
-	.course-stats { display: flex; gap: 12px; font-size: 0.85rem; }
-	.stat-k { color: var(--text-dim); }
-	.stat-v { font-weight: 700; }
-	.text-emerald { color: #34d399; }
+	.lesson-nav { display: flex; flex-direction: column; gap: 6px; }
+	.lesson-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 12px;
+		border-radius: var(--radius-sm);
+		border: 1px solid var(--border-subtle);
+		background: rgba(255,255,255,0.03);
+		cursor: pointer;
+		text-align: left;
+		color: var(--text-main);
+	}
+	.lesson-item.active { border-color: var(--accent-indigo); background: rgba(99,102,241,0.1); }
+	.lesson-item.completed .lesson-title { color: var(--text-dim); text-decoration: line-through; }
+	.lesson-order { font-weight: 700; color: var(--text-muted); min-width: 20px; }
+	.lesson-title { font-size: 0.9rem; }
 </style>
-" filePath">
-/home/rebase04/Desktop/hacktoberfest2026/frontend/src/lib/components/courses/CourseCard.svelte

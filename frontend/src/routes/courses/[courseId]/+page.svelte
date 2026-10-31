@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import LessonNavigation from '$lib/components/courses/LessonNavigation.svelte';
 	import type { Lesson } from '$lib/components/courses/types';
 
-	const courseId = $derived($page.params.courseId);
+	const courseId = $derived(page.params.courseId);
 
 	const course = {
 		id: courseId,

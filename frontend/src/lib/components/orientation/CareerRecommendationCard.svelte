@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { selected = false, title = '', description = '', onclick = () => {} } = $props();
+	let { selected = false, title = '', description = '', onclick = () => {} }: { selected?: boolean; title?: string; description?: string; onclick?: () => void } = $props();
 </script>
 
 <button class="selection-card" class:selected onclick={onclick} type="button">

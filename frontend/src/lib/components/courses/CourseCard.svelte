@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { CareerPathway } from './types';
-	let { pathway } = $props<{ pathway: CareerPathway }>();
+	import type { Course } from './types';
+	let { course, onAction = () => {} }: { course: Course; onAction?: () => void } = $props();
 </script>
 
 <div class="card pathway-card">
