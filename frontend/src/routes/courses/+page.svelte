@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import CourseCard from '$lib/components/courses/CourseCard.svelte';
 	import { mockCourses } from '$lib/components/courses/courseMock';
 	import type { Course } from '$lib/components/courses/types';
@@ -34,7 +35,7 @@
 
 	<div class="courses-grid">
 		{#each filtered as course}
-			<CourseCard {course} onAction={() => {}} />
+			<CourseCard {course} onAction={() => goto(`/courses/${course.id}`)} />
 		{/each}
 	</div>
 </div>
