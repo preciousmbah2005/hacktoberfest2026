@@ -89,7 +89,7 @@
 					<span class="points-val">{points.toLocaleString()}</span>
 					<span class="points-label">Pts</span>
 				</div>
-				<span class="pill-cta">Redeem Data ⚡</span>
+				<span class="pill-cta">Redeem Data</span>
 			</a>
 
 			<!-- User Menu -->

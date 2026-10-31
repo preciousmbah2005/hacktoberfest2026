@@ -64,7 +64,7 @@
 							{/if}
 						</button>
 						<a href="/ai-assistant?course={course.course_id}" class="btn btn-primary btn-sm">
-							Ask AI Tutor 🤖
+							Ask AI Tutor
 						</a>
 					</div>
 				</div>

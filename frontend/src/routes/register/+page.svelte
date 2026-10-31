@@ -75,11 +75,11 @@
 			</div>
 
 			{#if errorMsg}
-				<div class="error-box">⚠️ {errorMsg}</div>
+				<div class="error-box">{errorMsg}</div>
 			{/if}
 
 			<button type="submit" class="btn btn-reward btn-lg w-full" disabled={loading}>
-				{loading ? 'Creating Account...' : 'Sign Up & Claim 500 PTS ⚡'}
+				{loading ? 'Creating Account...' : 'Sign Up and Claim 500 PTS'}
 			</button>
 		</form>
 

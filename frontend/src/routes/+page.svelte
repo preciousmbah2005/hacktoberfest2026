@@ -19,20 +19,19 @@
 
 	<div class="cta-row">
 		<a href="/dashboard" class="btn btn-primary btn-lg">
-			Go to Dashboard 🚀
+			Go to Dashboard
 		</a>
 		<a href="/orientation" class="btn btn-outline btn-lg">
-			Take AI Career Assessment 🎯
+			Take AI Career Assessment
 		</a>
 		<a href="/rewards" class="btn btn-reward btn-lg">
-			View Mobile Rewards ⚡
+			View Mobile Rewards
 		</a>
 	</div>
 
 	<!-- 3 Key Value Pillars -->
 	<div class="pillars-grid">
 		<div class="card pillar-card">
-			<div class="pillar-icon">🎯</div>
 			<h3 class="pillar-title">1. AI Career Orientation</h3>
 			<p class="pillar-desc">
 				Discover tailored pathways in Software Engineering, AI, and Data Science based on your strengths and goals.
@@ -41,7 +40,6 @@
 		</div>
 
 		<div class="card pillar-card">
-			<div class="pillar-icon">📚</div>
 			<h3 class="pillar-title">2. Bite-Sized Learning</h3>
 			<p class="pillar-desc">
 				Explore interactive modules, practice live coding exercises, and get instant answers from your AI tutor.
@@ -50,7 +48,6 @@
 		</div>
 
 		<div class="card pillar-card">
-			<div class="pillar-icon">📶</div>
 			<h3 class="pillar-title">3. Mobile Data Rewards</h3>
 			<p class="pillar-desc">
 				Every completed quiz converts to learning points spendable directly on telecom data top-ups.

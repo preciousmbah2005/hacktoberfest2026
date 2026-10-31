@@ -45,10 +45,10 @@
 
 			<div class="hero-actions">
 				<a href="/orientation" class="btn btn-primary">
-					Take Career Orientation (AI) 🎯
+					Take Career Orientation
 				</a>
 				<a href="/rewards" class="btn btn-reward">
-					Open Rewards Wallet ⚡
+					Open Rewards Wallet
 				</a>
 				<button 
 					class="btn btn-outline"
@@ -56,11 +56,11 @@
 					disabled={claimingBonus || bonusClaimed}
 				>
 					{#if bonusClaimed}
-						✅ +100 PTS Claimed!
+						+100 PTS Claimed
 					{:else if claimingBonus}
 						Claiming...
 					{:else}
-						🎁 Claim Daily Bonus (+100 PTS)
+						Claim Daily Bonus (+100 PTS)
 					{/if}
 				</button>
 			</div>
@@ -89,7 +89,6 @@
 				<!-- Quick AI Assistant Callout -->
 				<div class="card ai-card">
 					<div class="ai-head">
-						<span class="ai-icon">🤖</span>
 						<div>
 							<h4 class="ai-title">24/7 AI Learning Assistant</h4>
 							<p class="ai-sub">Stuck on a problem or concept?</p>
