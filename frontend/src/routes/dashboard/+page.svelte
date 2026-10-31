@@ -89,7 +89,7 @@
 				<!-- Quick AI Assistant Callout -->
 				<div class="card ai-card">
 					<div class="ai-head">
-						<span class="ai-icon">🤖</span>
+						<span class="ai-icon"></span>
 						<div>
 							<h4 class="ai-title">24/7 AI Learning Assistant</h4>
 							<p class="ai-sub">Stuck on a problem or concept?</p>

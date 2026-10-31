@@ -90,7 +90,7 @@
 				<div class="message-row" class:user-row={m.sender === 'user'}>
 					<div class="bubble" class:user-bubble={m.sender === 'user'}>
 						<div class="bubble-header">
-							<span class="sender-tag">{m.sender === 'assistant' ? '🤖 AI Tutor' : '👤 You'}</span>
+							<span class="sender-tag">{m.sender === 'assistant' ? 'AI Tutor' : '👤 You'}</span>
 							<span class="time-tag">{m.time}</span>
 						</div>
 						<p class="bubble-text">{m.text}</p>
