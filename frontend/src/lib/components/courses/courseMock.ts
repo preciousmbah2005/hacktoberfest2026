@@ -1,35 +1,11 @@
-<script lang="ts">
-	import type { Course } from './types';
-	let { course, onAction = () => {} } = $props<{ course: Course; onAction?: () => void }>();
-</script>
+import type { Course } from './types';
 
-<div class="card course-card">
-	<div class="card-head">
-		<span class="badge badge-ai">{course.pathway}</span>
-		<span class="level-pill">{course.level}</span>
-	</div>
-	<h3 class="course-name">{course.title}</h3>
-	<p class="course-desc">{course.description}</p>
-	<div class="course-meta">
-		<span class="meta-item">⏱ {course.duration}</span>
-		{#if course.progress !== undefined}<span class="meta-item">Progress: {course.progress}%</span>{/if}
-	</div>
-	{#if course.progress !== undefined}
-		<div class="progress-container"><div class="progress-bar" style="width: {course.progress}%"></div></div>
-	{/if}
-	<button class="btn btn-reward btn-sm" onclick={onAction}>
-		{course.enrolled ? 'Continue Learning' : 'Enroll'}
-	</button>
-</div>
-
-<style>
-	.course-card { display: flex; flex-direction: column; gap: 12px; }
-	.card-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-	.level-pill { font-size: 0.75rem; color: var(--text-dim); }
-	.course-name { font-size: 1.15rem; }
-	.course-desc { font-size: 0.88rem; color: var(--text-muted); }
-	.course-meta { display: flex; gap: 12px; font-size: 0.8rem; color: var(--text-dim); }
-	.meta-item { font-weight: 600; }
-</style>
-" filePath">
-/home/rebase04/Desktop/hacktoberfest2026/frontend/src/lib/components/courses/CourseCard.svelte
+export const mockCourses: Course[] = [
+	{ id: 'intro-programming', title: 'Introduction to Programming', description: 'Learn programming fundamentals.', pathway: 'Software Engineering', level: 'Beginner', duration: '4 weeks', enrolled: false },
+	{ id: 'html-css', title: 'HTML and CSS Fundamentals', description: 'Build web pages with HTML and CSS.', pathway: 'UI/UX & Product Design', level: 'Beginner', duration: '3 weeks', enrolled: false },
+	{ id: 'js-fundamentals', title: 'JavaScript Fundamentals', description: 'Core JavaScript concepts.', pathway: 'Software Engineering', level: 'Beginner', duration: '5 weeks', enrolled: true, progress: 40 },
+	{ id: 'intro-python', title: 'Introduction to Python', description: 'Python basics for data and AI.', pathway: 'Data Science & AI', level: 'Beginner', duration: '4 weeks', enrolled: false },
+	{ id: 'intro-data-science', title: 'Introduction to Data Science', description: 'Data analysis fundamentals.', pathway: 'Data Science & AI', level: 'Intermediate', duration: '6 weeks', enrolled: false },
+	{ id: 'cybersecurity-fundamentals', title: 'Cybersecurity Fundamentals', description: 'Security basics.', pathway: 'Cybersecurity', level: 'Beginner', duration: '4 weeks', enrolled: false },
+	{ id: 'ui-ux-fundamentals', title: 'UI/UX Design Fundamentals', description: 'Design principles and UX.', pathway: 'UI/UX & Product Design', level: 'Beginner', duration: '4 weeks', enrolled: false }
+];
