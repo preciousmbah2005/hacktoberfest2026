@@ -16,3 +16,21 @@
 </style>
 " filePath">
 /home/rebase04/Desktop/hacktoberfest2026/frontend/src/lib/components/orientation/ProgressIndicator.svelte
+export interface OrientationAssessmentRequest {
+	answers: {
+		interests: string[];
+		favorite_subjects: string[];
+		skills: string[];
+		career_goals: string;
+	};
+}
+
+export interface OrientationAssessmentResponse {
+	recommendations: Array<{
+		pathway: string;
+		description: string;
+		reason: string;
+		skills: string[];
+		courses: string[];
+	}>;
+}

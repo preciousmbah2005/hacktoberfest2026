@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import ProgressIndicator from '$lib/components/orientation/ProgressIndicator.svelte';
 	import SelectionCard from '$lib/components/orientation/SelectionCard.svelte';
+	import { orientationResult } from '$lib/components/orientation/orientationStore';
+	import { submitOrientationAssessment } from '$lib/components/orientation/orientationService';
 	import type { OrientationQuestionnaireAnswers } from '$lib/components/orientation/types';
 
 	const steps = [
@@ -19,6 +22,7 @@
 	let current = $state(0);
 	let error = $state('');
 	let loading = $state(false);
+	let submitting = $state(false);
 	let submitted = $state(false);
 
 	function toggle(list: string[], value: string): string[] {
@@ -47,9 +51,28 @@
 	function prev() { error = ''; if (current > 0) current--; }
 
 	async function submit() {
+		if (submitting) return;
+		submitting = true;
 		loading = true;
-		try { await new Promise((r) => setTimeout(r, 800)); submitted = true; }
-		finally { loading = false; }
+		error = '';
+		try {
+			const req = {
+				answers: {
+					interests: answers.interests,
+					favorite_subjects: answers.favoriteSubjects,
+					skills: answers.skills,
+					career_goals: answers.careerGoals
+				}
+			};
+			const res = await submitOrientationAssessment(req);
+			orientationResult.set(res);
+			await goto('/orientation/results');
+		} catch (e) {
+			error = 'Submission failed. Please try again.';
+		} finally {
+			loading = false;
+			submitting = false;
+		}
 	}
 
 	const step = $derived(steps[current]);
@@ -63,55 +86,48 @@
 
 	<ProgressIndicator value={current + 1} max={steps.length} label={`Step ${current + 1} of ${steps.length}`} />
 
-	{#if submitted}
-		<div class="card review-card">
-			<h3>Submission Received</h3>
-			<p>Thank you. Your responses have been recorded for review.</p>
-		</div>
-	{:else}
-		<div class="card question-card">
-			<h2 class="step-title">{step.title}</h2>
-			<p class="step-desc">{step.description}</p>
+	<div class="card question-card">
+		<h2 class="step-title">{step.title}</h2>
+		<p class="step-desc">{step.description}</p>
 
-			{#if step.type === 'multi'}
-				<div class="options-grid">
-					{#each step.options as opt}
-						<SelectionCard
-							title={opt}
-							description=""
-							selected={
-								step.id === 'interests' ? answers.interests.includes(opt) :
-								step.id === 'favoriteSubjects' ? answers.favoriteSubjects.includes(opt) :
-								step.id === 'skills' ? answers.skills.includes(opt) :
-								step.id === 'preferredActivities' ? preferredActivities.includes(opt) :
-								problems.includes(opt)
-							}
-							onclick={() => {
-								if (step.id === 'interests') answers.interests = toggle(answers.interests, opt);
-								else if (step.id === 'favoriteSubjects') answers.favoriteSubjects = toggle(answers.favoriteSubjects, opt);
-								else if (step.id === 'skills') answers.skills = toggle(answers.skills, opt);
-								else if (step.id === 'preferredActivities') preferredActivities = toggle(preferredActivities, opt);
-								else problems = toggle(problems, opt);
-							}}
-						/>
-					{/each}
-				</div>
-			{:else}
-				<textarea class="form-textarea" rows="4" bind:value={answers.careerGoals} placeholder="e.g. I want to build AI products..."></textarea>
-			{/if}
-
-			{#if error}<p class="error">{error}</p>{/if}
-
-			<div class="nav-row">
-				<button class="btn btn-outline" onclick={prev} disabled={current === 0}>Previous</button>
-				{#if current === steps.length - 1}
-					<button class="btn btn-primary" onclick={submit} disabled={loading}>{loading ? 'Submitting...' : 'Submit'}</button>
-				{:else}
-					<button class="btn btn-primary" onclick={next}>Next</button>
-				{/if}
+		{#if step.type === 'multi'}
+			<div class="options-grid">
+				{#each step.options as opt}
+					<SelectionCard
+						title={opt}
+						description=""
+						selected={
+							step.id === 'interests' ? answers.interests.includes(opt) :
+							step.id === 'favoriteSubjects' ? answers.favoriteSubjects.includes(opt) :
+							step.id === 'skills' ? answers.skills.includes(opt) :
+							step.id === 'preferredActivities' ? preferredActivities.includes(opt) :
+							problems.includes(opt)
+						}
+						onclick={() => {
+							if (step.id === 'interests') answers.interests = toggle(answers.interests, opt);
+							else if (step.id === 'favoriteSubjects') answers.favoriteSubjects = toggle(answers.favoriteSubjects, opt);
+							else if (step.id === 'skills') answers.skills = toggle(answers.skills, opt);
+							else if (step.id === 'preferredActivities') preferredActivities = toggle(preferredActivities, opt);
+							else problems = toggle(problems, opt);
+						}}
+					/>
+				{/each}
 			</div>
+		{:else}
+			<textarea class="form-textarea" rows="4" bind:value={answers.careerGoals} placeholder="e.g. I want to build AI products..."></textarea>
+		{/if}
+
+		{#if error}<p class="error">{error}</p>{/if}
+
+		<div class="nav-row">
+			<button class="btn btn-outline" onclick={prev} disabled={current === 0}>Previous</button>
+			{#if current === steps.length - 1}
+				<button class="btn btn-primary" onclick={submit} disabled={loading || submitting}>{loading ? 'Submitting...' : 'Submit'}</button>
+			{:else}
+				<button class="btn btn-primary" onclick={next}>Next</button>
+			{/if}
 		</div>
-	{/if}
+	</div>
 </div>
 
 <style>
@@ -125,6 +141,5 @@
 	.options-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
 	.nav-row { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
 	.error { color: #f43f5e; font-size: 0.85rem; }
-	.review-card { padding: 28px; text-align: center; }
 	@media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } .nav-row { flex-direction: column; } }
 </style>
