@@ -14,7 +14,7 @@
 	<div class="achievements-list">
 		{#each achievements as achievement}
 			<div class="achievement-item">
-				<span class="badge-star">✨</span>
+				<span class="badge-star"></span>
 				<span class="achievement-text">{achievement}</span>
 			</div>
 		{/each}
